@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{# Load the tag library #}
+{% load bootstrap3 %}
+{# Display django.contrib.messages as Bootstrap alerts #}
+{% bootstrap_messages %}
+
+
+{% block title %}Boka en bat{% endblock %}
+
+{% block content %}
+  <h2>Book boat</h2>
+
+		<form method="POST" class="post-form">{% csrf_token %}
+			{% bootstrap_form form %}
+			{% buttons %}
+        		<button type="submit" class="btn btn-primary">
+            		{% bootstrap_icon "calendar" %} Boka
+        		</button>
+    		{% endbuttons %}
+			
+		</form>
+		
+		
+	<div id="calendar"></div>
+	<script type='text/javascript'>
+	$(document).ready(function() {
+		// page is now ready, initialize the calendar...
+		$('#calendar').fullCalendar({
+			// put your options and callbacks here
+			defaultView: 'agendaWeek',
+			timeFormat: 'HH:mm',
+			allDaySlot: false,
+			scrollTime: '08:00:00',
+			events: '/api/event_occurences/',
+			eventClick:  function(event, jsEvent, view) {
+	            $('#modalTitle').html(event.title);
+	            $('#modalBody').html(event.description);
+	            $('#eventUrl').attr('href',event.url);
+	            $('#calendarModal').modal();
+        	}
+		})
+	});
+	</script>
+		
+	
+
+{% endblock %}

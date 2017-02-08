@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//boat_booking/models.py=utf-8
+encoding//boat_booking/templates/base.html=UTF-8
+encoding//boat_booking/templates/booking/booking.html=UTF-8
+encoding//boat_booking/views.py=utf-8
