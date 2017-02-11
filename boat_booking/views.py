@@ -16,6 +16,7 @@ from django.http.response import JsonResponse
 
 
 from django_modalview.generic.base import ModalTemplateUtilView
+from django_modalview.generic.component import ModalResponse
 
 
 def custom_login(request):
@@ -139,6 +140,9 @@ class BookingModal(ModalTemplateUtilView):
         '''
             url_param is the name of an url parameter. If you don't have url parameters change the signature.
         '''
+        self.object.delete()
+        print 'a'
+        self.response = ModalResponse('Deleted', 'danger')
         #if url_param == 'check':
         #    self.response = ModalResponse('good game', 'success') #explain in the component part
         #else:
